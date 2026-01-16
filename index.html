@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PADI JABAR — Pasar Digital Jawa Barat</title>
+  <meta name="description" content="PADI JABAR adalah sarana promosi dan pemasaran produk khas Jawa Barat dari UMKM—makanan tradisional, oleh-oleh, dan kerajinan lokal." />
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --card:#0f1a2e;
+      --muted:#94a3b8;
+      --text:#e5e7eb;
+      --white:#ffffff;
+      --border:rgba(255,255,255,.12);
+      --primary:#22c55e; /* hijau */
+      --primary2:#38bdf8; /* biru muda */
+      --shadow: 0 18px 45px rgba(0,0,0,.35);
+      --radius:18px;
+      --container:1100px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(900px 500px at 20% 10%, rgba(56,189,248,.16), transparent 65%),
+        radial-gradient(900px 500px at 80% 0%, rgba(34,197,94,.14), transparent 65%),
+        radial-gradient(700px 420px at 50% 95%, rgba(56,189,248,.10), transparent 65%),
+        var(--bg);
+      line-height:1.55;
+    }
+    a{color:inherit; text-decoration:none}
+    .container{
+      width:min(var(--container), calc(100% - 40px));
+      margin:0 auto;
+    }
+
+    /* NAV */
+    .nav{
+      position:sticky;
+      top:0;
+      z-index:20;
+      backdrop-filter: blur(12px);
+      background: rgba(11,18,32,.65);
+      border-bottom:1px solid var(--border);
+    }
+    .nav-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px 0;
+      gap:16px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:800;
+      letter-spacing:.2px;
+    }
+    .logo{
+      width:38px; height:38px;
+      border-radius:12px;
+      background: linear-gradient(135deg, var(--primary), var(--primary2));
+      box-shadow: 0 10px 25px rgba(34,197,94,.20);
+    }
+    .nav-links{
+      display:flex;
+      gap:16px;
+      color:rgba(229,231,235,.9);
+      font-weight:600;
+      font-size:14px;
+    }
+    .nav-links a{
+      padding:10px 10px;
+      border-radius:12px;
+      opacity:.85;
+    }
+    .nav-links a:hover{opacity:1; background:rgba(255,255,255,.06)}
+    .nav-cta{
+      display:flex; gap:10px; align-items:center;
+    }
+
+    /* BUTTONS */
+    .btn{
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      color:var(--white);
+      padding:11px 14px;
+      border-radius:14px;
+      font-weight:800;
+      font-size:14px;
+      cursor:pointer;
+      transition:.18s ease;
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      justify-content:center;
+      white-space:nowrap;
+    }
+    .btn:hover{transform: translateY(-1px); background:rgba(255,255,255,.10)}
+    .btn.primary{
+      border:none;
+      background: linear-gradient(135deg, var(--primary), var(--primary2));
+      box-shadow: 0 18px 40px rgba(56,189,248,.14);
+      color:#06121f;
+    }
+    .btn.primary:hover{filter:brightness(1.05)}
+    .btn.small{padding:10px 12px; border-radius:12px; font-size:13px}
+
+    /* HERO */
+    .hero{
+      padding:68px 0 34px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:26px;
+      align-items:stretch;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      color:rgba(229,231,235,.95);
+      font-weight:700;
+      font-size:13px;
+    }
+    h1{
+      margin:14px 0 10px;
+      font-size: clamp(34px, 4.3vw, 52px);
+      line-height:1.05;
+      letter-spacing:-.8px;
+    }
+    .lead{
+      margin:0 0 18px;
+      color: rgba(229,231,235,.88);
+      font-size: 16.5px;
+      max-width: 58ch;
+    }
+    .hero-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+    .hero-note{
+      margin-top:14px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .hero-card{
+      border:1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:18px;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-card:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(500px 280px at 20% 10%, rgba(34,197,94,.18), transparent 60%),
+                  radial-gradient(500px 280px at 80% 25%, rgba(56,189,248,.16), transparent 60%);
+      pointer-events:none;
+      filter: blur(0px);
+    }
+    .hero-card > *{position:relative}
+    .kpi{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      margin-top:10px;
+    }
+    .kpi-item{
+      border:1px solid var(--border);
+      background: rgba(11,18,32,.55);
+      border-radius:16px;
+      padding:14px;
+    }
+    .kpi-num{
+      font-weight:900;
+      font-size:18px;
+      letter-spacing:.2px;
+    }
+    .kpi-label{
+      color: var(--muted);
+      font-size:13px;
+      margin-top:4px;
+    }
+    .mini-list{
+      margin-top:14px;
+      border-top:1px solid rgba(255,255,255,.10);
+      padding-top:14px;
+      display:grid;
+      gap:10px;
+    }
+    .mini-row{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      color: rgba(229,231,235,.9);
+      font-size: 14px;
+    }
+    .dot{
+      width:10px; height:10px;
+      margin-top:6px;
+      border-radius:999px;
+      background: linear-gradient(135deg, var(--primary), var(--primary2));
+      flex:0 0 auto;
+    }
+
+    /* SECTIONS */
+    section{padding:34px 0}
+    .section-title{
+      font-size: 22px;
+      letter-spacing:-.3px;
+      margin:0 0 10px;
+    }
+    .section-sub{
+      margin:0 0 18px;
+      color: var(--muted);
+      max-width: 75ch;
+    }
+    .grid-2{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+    }
+    .card{
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      border-radius: var(--radius);
+      padding:18px;
+      box-shadow: 0 16px 40px rgba(0,0,0,.22);
+    }
+    .card h3{
+      margin:0 0 8px;
+      font-size:16px;
+      letter-spacing:-.2px;
+    }
+    .card p{margin:0; color: rgba(229,231,235,.88)}
+    .features{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:14px;
+    }
+    .feature{
+      padding:16px;
+      border-radius: var(--radius);
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.04);
+    }
+    .feature .icon{
+      width:44px; height:44px;
+      border-radius:16px;
+      display:grid; place-items:center;
+      background: rgba(255,255,255,.07);
+      border:1px solid rgba(255,255,255,.12);
+      margin-bottom:10px;
+      font-size:18px;
+    }
+    .feature h4{margin:0 0 6px; font-size:15px}
+    .feature p{margin:0; color: var(--muted); font-size:13.5px}
+
+    /* CTA */
+    .cta{
+      border:1px solid var(--border);
+      background: linear-gradient(135deg, rgba(34,197,94,.15), rgba(56,189,248,.12));
+      border-radius: calc(var(--radius) + 6px);
+      padding:22px;
+      box-shadow: var(--shadow);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+    .cta h3{
+      margin:0;
+      font-size:18px;
+      letter-spacing:-.2px;
+    }
+    .cta p{
+      margin:6px 0 0;
+      color: rgba(229,231,235,.85);
+      max-width: 70ch;
+      font-size: 14px;
+    }
+    .footer{
+      padding:26px 0 36px;
+      color: rgba(148,163,184,.9);
+      font-size: 13px;
+      border-top:1px solid rgba(255,255,255,.10);
+      margin-top: 26px;
+    }
+
+    /* Responsive */
+    @media (max-width: 920px){
+      .hero-grid{grid-template-columns:1fr; }
+      .features{grid-template-columns:repeat(2, 1fr)}
+    }
+    @media (max-width: 560px){
+      .nav-links{display:none}
+      .kpi{grid-template-columns:1fr}
+      .grid-2{grid-template-columns:1fr}
+      .features{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+
+<body>
+  <!-- NAV -->
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#top" aria-label="PADI JABAR">
+        <span class="logo" aria-hidden="true"></span>
+        <span>PADI JABAR</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Navigasi">
+        <a href="#problem">Masalah</a>
+        <a href="#solution">Solusi</a>
+        <a href="#features">Fitur</a>
+        <a href="#cta">Daftar</a>
+      </nav>
+
+      <div class="nav-cta">
+        <a class="btn small" href="#features">Lihat Fitur</a>
+        <a class="btn primary small" href="#cta">Mulai Sekarang</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main id="top" class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="badge">Etalase Online • Produk Khas Jawa Barat • UMKM</span>
+        <h1>Pasar Digital Jawa Barat (PADI JABAR)</h1>
+        <p class="lead">
+          Sarana promosi dan pemasaran produk khas Jawa Barat yang dihasilkan UMKM.
+          Temukan makanan tradisional, oleh-oleh khas, dan kerajinan lokal dalam satu etalase digital
+          yang rapi, mudah dicari, dan siap dibagikan.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn primary" href="#cta">Jelajahi Produk Sekarang</a>
+          <a class="btn" href="#cta">Daftarkan Produk UMKM</a>
+          <a class="btn" href="#problem">Pelajari Selengkapnya</a>
+        </div>
+
+        <div class="hero-note">
+          *Draft landing page — tombol CTA bisa diarahkan ke halaman katalog/pendaftaran/WhatsApp admin.
+        </div>
+      </div>
+
+      <aside class="hero-card" aria-label="Ringkasan manfaat PADI JABAR">
+        <h3 style="margin:0 0 8px; font-size:16px;">Ringkasan Manfaat</h3>
+        <p style="margin:0; color: rgba(229,231,235,.86); font-size:14px;">
+          PADI JABAR membantu UMKM lebih terlihat, dan memudahkan masyarakat menemukan produk khas Jabar secara cepat.
+        </p>
+
+        <div class="kpi">
+          <div class="kpi-item">
+            <div class="kpi-num">1 Etalase</div>
+            <div class="kpi-label">Promosi terpusat & rapi</div>
+          </div>
+          <div class="kpi-item">
+            <div class="kpi-num">Mudah Dicari</div>
+            <div class="kpi-label">Filter kategori & daerah</div>
+          </div>
+          <div class="kpi-item">
+            <div class="kpi-num">Siap Dibagikan</div>
+            <div class="kpi-label">Link produk untuk WA/IG</div>
+          </div>
+          <div class="kpi-item">
+            <div class="kpi-num">Khas Jabar</div>
+            <div class="kpi-label">Fokus produk unggulan lokal</div>
+          </div>
+        </div>
+
+        <div class="mini-list">
+          <div class="mini-row"><span class="dot"></span><span>Katalog produk unggulan: makanan, oleh-oleh, kerajinan.</span></div>
+          <div class="mini-row"><span class="dot"></span><span>Profil UMKM & cerita produk untuk meningkatkan kepercayaan.</span></div>
+          <div class="mini-row"><span class="dot"></span><span>Highlight rekomendasi mingguan untuk meningkatkan exposure.</span></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- PROBLEM -->
+  <section id="problem">
+    <div class="container">
+      <h2 class="section-title">Masalah yang Sering Dihadapi UMKM</h2>
+      <p class="section-sub">
+        Banyak UMKM Jawa Barat memiliki produk yang kuat, namun promosi belum terpusat dan calon pembeli kesulitan
+        menemukan produk khas Jawa Barat secara cepat, terpercaya, dan menarik.
+      </p>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Promosi tersebar di banyak platform</h3>
+          <p>Informasi produk terpencar (status WA, marketplace, media sosial), sehingga sulit ditemukan dan tidak konsisten tampilannya.</p>
+        </div>
+        <div class="card">
+          <h3>Jangkauan pasar masih terbatas</h3>
+          <p>Produk unggulan daerah sering kalah terlihat dibanding brand besar karena tidak punya etalase digital terkurasi.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUTION -->
+  <section id="solution">
+    <div class="container">
+      <h2 class="section-title">Solusi: Etalase Online Terpadu PADI JABAR</h2>
+      <p class="section-sub">
+        PADI JABAR berfungsi sebagai sarana promosi dan pemasaran yang menampilkan produk unggulan daerah Jawa Barat
+        dalam satu katalog digital yang mudah diakses oleh masyarakat luas.
+      </p>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Terpusat & mudah dipahami</h3>
+          <p>Pengunjung dapat menjelajahi produk khas Jawa Barat dengan kategori yang rapi dan tampilan yang konsisten.</p>
+        </div>
+        <div class="card">
+          <h3>Meningkatkan kepercayaan</h3>
+          <p>Setiap produk dapat menampilkan profil UMKM, asal daerah, dan cerita produk untuk memperkuat nilai lokal.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <div class="container">
+      <h2 class="section-title">Fitur Unggulan</h2>
+      <p class="section-sub">
+        Fokus utama: memudahkan masyarakat menemukan produk khas Jawa Barat, sekaligus membantu UMKM mempromosikan produk dengan lebih efektif.
+      </p>
+
+      <div class="features">
+        <div class="feature">
+          <div class="icon" aria-hidden="true">🛍️</div>
+          <h4>Etalase Produk Khas Jabar</h4>
+          <p>Kategori jelas: makanan tradisional, oleh-oleh khas, kerajinan lokal, dan produk unggulan daerah.</p>
+        </div>
+
+        <div class="feature">
+          <div class="icon" aria-hidden="true">🔎</div>
+          <h4>Pencarian & Filter Cepat</h4>
+          <p>Cari berdasarkan kategori, kota/kabupaten, rentang harga, serta produk terbaru/terlaris.</p>
+        </div>
+
+        <div class="feature">
+          <div class="icon" aria-hidden="true">🏷️</div>
+          <h4>Highlight Produk Unggulan</h4>
+          <p>Section rekomendasi mingguan untuk meningkatkan exposure produk unggulan daerah.</p>
+        </div>
+
+        <div class="feature">
+          <div class="icon" aria-hidden="true">👤</div>
+          <h4>Profil UMKM & Cerita Produk</h4>
+          <p>Identitas pelaku UMKM, asal daerah, serta cerita produk untuk membangun trust dan brand.</p>
+        </div>
+
+        <div class="feature">
+          <div class="icon" aria-hidden="true">🔗</div>
+          <h4>Halaman Produk Siap Dibagikan</h4>
+          <p>Link produk yang rapi untuk promosi via WhatsApp/Instagram tanpa perlu desain ulang.</p>
+        </div>
+
+        <div class="feature">
+          <div class="icon" aria-hidden="true">📱</div>
+          <h4>Akses Mudah di Media Digital</h4>
+          <p>Responsif di HP/laptop sehingga masyarakat bisa melihat produk kapan pun dan di mana pun.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="cta">
+    <div class="container">
+      <div class="cta">
+        <div>
+          <h3>Siap mempromosikan produk khas Jawa Barat lebih luas?</h3>
+          <p>
+            Jelajahi katalog PADI JABAR untuk menemukan produk unggulan daerah, atau daftarkan produk UMKM Anda
+            agar tampil dalam etalase online yang terpusat dan mudah dicari.
+          </p>
+        </div>
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn primary" href="#" onclick="alert('Arahkan tombol ini ke halaman katalog / produk.'); return false;">
+            Jelajahi Produk
+          </a>
+          <a class="btn" href="#" onclick="alert('Arahkan tombol ini ke form pendaftaran UMKM / WhatsApp admin.'); return false;">
+            Daftarkan Produk UMKM
+          </a>
+        </div>
+      </div>
+
+      <div class="footer">
+        © <span id="year"></span> PADI JABAR • Pasar Digital Jawa Barat — Etalase online UMKM produk khas Jawa Barat.
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Tahun otomatis
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
